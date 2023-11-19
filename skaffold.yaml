@@ -1,0 +1,12 @@
+apiVersion: skaffold/v4beta7
+kind: Config
+metadata:
+  name: galleryapp
+build:
+  artifacts:
+    - image: pavangudiwada/galleryapp
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - deploy.yaml
