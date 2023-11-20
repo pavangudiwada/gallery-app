@@ -5,13 +5,13 @@ FROM python:3.11-slim
 WORKDIR /galleryapp
 
 COPY pyproject.toml poetry.lock ./
-COPY . .
-
 RUN pip install poetry
 
 #No virtual env's because its already container
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-dev
+
+COPY . .
 
 EXPOSE 8501
 
