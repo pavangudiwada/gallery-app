@@ -17,10 +17,12 @@ spec:
         image: pavangudiwada/galleryapp:v1
         resources:
           limits:
-            memory: "128Mi"
+            memory: "500Mi"
             cpu: "500m"
         ports:
         - containerPort: 8501
+        - containerPort: 8888
+
 ---
 apiVersion: v1
 kind: Service
@@ -31,7 +33,13 @@ spec:
   selector:
     app: galleryapp
   ports:
-  - port: 8501
+  - name: streamlitapp
+    port: 8501
     targetPort: 8501
     nodePort: 30007
+  - name: metrics
+    protocol: TCP
+    port: 8888
+    targetPort: 8888
+    nodePort: 30008
 

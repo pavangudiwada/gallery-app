@@ -13,6 +13,7 @@ RUN poetry install --no-dev
 
 COPY . .
 
-EXPOSE 8501
+EXPOSE 8501 
+EXPOSE 8888
 
 CMD ["poetry", "run", "streamlit", "run", "app.py"]

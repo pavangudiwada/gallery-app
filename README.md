@@ -2,6 +2,10 @@
 
 ## WIP 🏗️
 
+- [] Add Black as a Git Hook to run before commit
+- [] Add Prometheus metrics
+- [] Update README
+
 ## Tools Used
 - Git
 - Pyenv, virtualenv

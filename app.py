@@ -2,9 +2,23 @@ import streamlit as st
 from os import listdir
 import logging
 import random
-
+from flask import Response, Flask
+import prometheus_client
 
 logging.basicConfig(level=logging.DEBUG)
+
+if not hasattr(st, "already_started_server"):
+    st.already_started_server = True
+    st.write("Due to some streamlit limitations, close this tab and open a new one")
+
+    app = Flask(__name__)
+
+    @app.route("/metrics/")
+    def metrics():
+        return Response(prometheus_client.generate_latest(), mimetype="text/plain; version=0.0.4; charset=utf-8")
+
+    app.run(host="0.0.0.0", port=8888)
+
 
 image_names = listdir("images/")
 image_paths = ["images/" + image for image in image_names]
